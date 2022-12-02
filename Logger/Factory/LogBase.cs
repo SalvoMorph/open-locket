@@ -8,11 +8,11 @@ namespace Sandbox.Factory // change with the correct nampespace
     internal abstract class LogBase
     {
         protected readonly object lockObj = new object();
-        
+
         /// <summary>
-        /// Log method
+        /// Log the message
         /// </summary>
-        /// <param name="message">Message to print</param>
+        /// <param name="message">Message to log</param>
         public abstract void Log(string message);
     }
 }

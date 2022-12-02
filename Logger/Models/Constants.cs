@@ -9,4 +9,14 @@ namespace Sandbox.Models // change with the correct nampespace
         Console,
         Both
     }
+
+    /// <summary>
+    /// Log Type
+    /// </summary>
+    public enum LogType
+    {
+        INFO,
+        WARNING,
+        ERROR
+    }
 }

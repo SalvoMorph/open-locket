@@ -10,7 +10,7 @@ namespace Sandbox.Services // change with the correct nampespace
         /// <inheritdoc cref="LogBase.Log(string)"/>
         public override void Log(string message)
         {
-            lock(lockObj)
+            lock (lockObj)
             {
                 Console.WriteLine(message);
             }
