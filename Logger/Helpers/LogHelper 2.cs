@@ -17,15 +17,43 @@ namespace Sandbox.Helpers // change with the correct nampespace
         /// </summary>
         /// <param name="target"><see cref="LogTarget"/></param>
         /// <param name="message">The message to log.</param>
-        /// <param name="logType"><see cref="LogType"/></param>
         /// <param name="fileName">Default is Log</param>
-        public static void Log(LogTarget target, string message, LogType logType = LogType.INFO, string fileName = "Log")
+        public static void LogInfo(LogTarget target, string message, string fileName = "Log")
+        {
+            Log(target, ParseMessageWithLogType(message, LogType.INFO), fileName);
+        }
+
+        /// <summary>
+        /// Log the Warning Message
+        /// </summary>
+        /// <param name="target"><see cref="LogTarget"/></param>
+        /// <param name="message">The message to log.</param>
+        /// <param name="fileName">Default is Log</param>
+        public static void LogWarning(LogTarget target, string message, string fileName = "Log")
+        {
+            Log(target, ParseMessageWithLogType(message, LogType.WARNING), fileName);
+        }
+
+        /// <summary>
+        /// Log the Error Message
+        /// </summary>
+        /// <param name="target"><see cref="LogTarget"/></param>
+        /// <param name="message">The message to log.</param>
+        /// <param name="fileName">Default is Log</param>
+        public static void LogError(LogTarget target, string message, string fileName = "Log")
+        {
+            Log(target, ParseMessageWithLogType(message, LogType.ERROR), fileName);
+        }
+
+        #region Private Methods
+        
+        private static void Log(LogTarget target, string message, string fileName)
         {
             switch (target)
             {
                 case LogTarget.File:
                     logger = new FileLoggerService(fileName);
-                    logger.Log(ParseMessageWithLogType(message, logType));
+                    logger.Log(message);
                     break;
                 case LogTarget.Console:
                     logger = new ConsoleLoggerService();
@@ -50,5 +78,7 @@ namespace Sandbox.Helpers // change with the correct nampespace
                 case LogType.ERROR: return $"Error: {message}";
             }
         }
+
+        #endregion
     }
 }

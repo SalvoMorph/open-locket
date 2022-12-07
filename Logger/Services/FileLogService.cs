@@ -6,7 +6,7 @@ using Sandbox.Factory; // change with the correct nampespace
 namespace Sandbox.Services // change with the correct nampespace
 {
     /// <inheritdoc cref="LogBase"/>
-    internal class FileLoggerService : LogBase
+    internal class FileLogService : LogBase
     {
         private static string logfileName = String.Empty;
 
@@ -28,13 +28,7 @@ namespace Sandbox.Services // change with the correct nampespace
             lock (lockObj)
             {
                 if (!File.Exists(logfileName))
-                {
                     file = File.CreateText(logfileName);
-                    file.WriteLine($"Test start at: {DateTime.Now}");
-                    file.WriteLine($"");
-                    file.WriteLine($"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-                    file.WriteLine($"");
-                }
                 else
                     file = File.AppendText(logfileName);
 
