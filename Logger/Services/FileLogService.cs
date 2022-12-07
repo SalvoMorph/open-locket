@@ -16,8 +16,11 @@ namespace Sandbox.Services // change with the correct nampespace
         /// <param name="fileName"></param>
         public FileLoggerService(string fileName = "Log")
         {
-            if (string.IsNullOrEmpty(logfileName))
-                logfileName = $"{fileName}_{DateTime.Now:yyyyMMddHHmmssfff}.txt";
+            lock (lockObj)
+            {
+                if (string.IsNullOrEmpty(logfileName))
+                    logfileName = $"{fileName}_{DateTime.Now:yyyyMMddHHmmssfff}.txt";
+            }
         }
 
         /// <inheritdoc cref="LogBase.Log(string)"/>
